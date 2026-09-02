@@ -1,11 +1,11 @@
 from fastapi import FastAPI, HTTPException
-
+from pydantic import BaseModel
 from database import create_database, get_connection
-from models import DeliveryRequest, AssignRequest, StatusRequest
-from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+app = FastAPI(
+    title="Reflex Delivery Service")
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,13 +14,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-app = FastAPI(
-    title="Reflex Delivery Service",
-    description="Simple delivery management service for Kenyan retailers",
-    version="1.0.0"
-)
-
 
 # ==========================================
 # STARTUP
@@ -49,7 +42,7 @@ def home():
 # ==========================================
 
 @app.post("/deliveries")
-def create_delivery(delivery: DeliveryRequest):
+def create_delivery(delivery: models.DeliveryRequest):
 
     connection = get_connection()
     cursor = connection.cursor()
@@ -343,7 +336,6 @@ def scan_order(order_code: str):
     connection.close()
 
     if not delivery:
---
         raise HTTPException(
             status_code=404,
             detail="Order not found"
