@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflex Delivery Service</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Reflex Delivery Service</h1>
+        <p>Delivery management system for retailers and riders</p>
+    </header>
+
+    <main>
+
+        <!-- Retailer Dashboard -->
+        <section class="card">
+            <h2>Create Delivery</h2>
+
+            <form id="deliveryForm">
+
+                <label>Customer Name</label>
+                <input
+                    type="text"
+                    id="customer_name"
+                    placeholder="Enter customer name"
+                    required
+                >
+
+                <label>Customer Phone</label>
+                <input
+                    type="text"
+                    id="customer_phone"
+                    placeholder="e.g. 0712345678"
+                    required
+                >
+
+                <label>Address</label>
+                <input
+                    type="text"
+                    id="address"
+                    placeholder="Enter delivery address"
+                    required
+                >
+
+                <label>Item Description</label>
+                <input
+                    type="text"
+                    id="item_description"
+                    placeholder="e.g. Samsung phone charger"
+                    required
+                >
+
+                <button type="submit">Create Delivery</button>
+
+            </form>
+
+            <div id="deliveryResult"></div>
+        </section>
+
+
+        <!-- Open Deliveries -->
+        <section class="card">
+            <h2>Open Deliveries</h2>
+
+            <button onclick="loadOpenDeliveries()">
+                Refresh Deliveries
+            </button>
+
+            <div id="openDeliveries"></div>
+        </section>
+
+
+        <!-- Rider Dashboard -->
+        <section class="card">
+            <h2>Rider Dashboard</h2>
+
+            <input
+                type="text"
+                id="riderName"
+                placeholder="Enter rider name"
+            >
+
+            <button onclick="loadRiderDeliveries()">
+                View My Deliveries
+            </button>
+
+            <div id="riderDeliveries"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Reflex Delivery Service &copy; 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
